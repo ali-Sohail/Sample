@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Sample.Views.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tt="clr-namespace:Sample.Effects"
+    xmlns:vm="clr-namespace:Sample.ViewModels"
+    Title="{Binding Title}"
+    Shell.NavBarIsVisible="True"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding Title}"
+                TextColor="White"
+                VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="AliceBlue">
+            <StackLayout.Effects>
+                <tt:TouchEffect Capture="True" TouchAction="TouchEffectAction" />
+            </StackLayout.Effects>
+            <Label
+                x:Name="label"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding Title}"
+                VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+
+
+    </ContentPage.Content>
+
+</ContentPage>
