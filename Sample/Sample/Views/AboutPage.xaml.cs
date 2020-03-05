@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Sample.Effects;
+using System;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace Sample.Views
@@ -10,7 +12,7 @@ namespace Sample.Views
     {
         private readonly Xamarin.Essentials.DisplayInfo display;
         private double x, y;
-
+        bool isLabelTeal = false;
         private bool check = false;
 
         public AboutPage()
@@ -84,21 +86,27 @@ namespace Sample.Views
                 case Sample.Effects.TouchActionType.Entered:
                     await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
                     break;
+
                 case Sample.Effects.TouchActionType.Pressed:
                     await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 800);
                     break;
+
                 case Sample.Effects.TouchActionType.Moved:
                     await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
                     break;
+
                 case Sample.Effects.TouchActionType.Released:
                     await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
                     break;
+
                 case Sample.Effects.TouchActionType.Exited:
                     await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
                     break;
+
                 case Sample.Effects.TouchActionType.Cancelled:
                     await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 1);
                     break;
+
                 default:
                     break;
             }
@@ -107,6 +115,34 @@ namespace Sample.Views
             //await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
         }
 
+        private void OnButtonClicked(object sender, EventArgs args)
+        {
+            if (isLabelTeal)
+            {
+                Color color = Color.Default;
+                switch (Device.RuntimePlatform)
+                {
+                    case Device.iOS:
+                        color = Color.Black;
+                        break;
 
+                    case Device.Android:
+                        color = Color.White;
+                        break;
+
+                    case Device.UWP:
+                        color = Color.Red;
+                        break;
+                }
+
+                ShadowEffect.SetColor(label, color);
+                isLabelTeal = false;
+            }
+            else
+            {
+                ShadowEffect.SetColor(label, Color.Teal);
+                isLabelTeal = true;
+            }
+        }
     }
 }

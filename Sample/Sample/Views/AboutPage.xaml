@@ -40,9 +40,28 @@
             </StackLayout.Effects>
             <Label
                 x:Name="label"
+                tt:ShadowEffect.DistanceX="5"
+                tt:ShadowEffect.DistanceY="5"
+                tt:ShadowEffect.HasShadow="true"
+                tt:ShadowEffect.Radius="5"
+                FontSize="Large"
                 HorizontalOptions="CenterAndExpand"
                 Text="{Binding Title}"
-                VerticalOptions="CenterAndExpand" />
+                VerticalOptions="CenterAndExpand">
+
+                <tt:ShadowEffect.Color>
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="iOS" Value="Black" />
+                        <On Platform="Android" Value="White" />
+                        <On Platform="UWP" Value="Red" />
+                    </OnPlatform>
+                </tt:ShadowEffect.Color>
+            </Label>
+
+            <Button
+                Clicked="OnButtonClicked"
+                Text="Change Shadow Color"
+                VerticalOptions="EndAndExpand" />
         </StackLayout>
 
 

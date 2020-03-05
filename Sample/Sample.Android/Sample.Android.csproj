@@ -64,6 +64,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DroidEffects\LabelShadowEffect.cs" />
     <Compile Include="DroidEffects\TouchEffect.cs" />
     <Compile Include="DroidRenderer\DroidMap.cs" />
     <Compile Include="MainActivity.cs" />
