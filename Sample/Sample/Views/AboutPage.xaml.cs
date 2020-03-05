@@ -79,9 +79,32 @@ namespace Sample.Views
         {
             System.Diagnostics.Debug.WriteLine($"Location X :{args.Location.X}\t Location Y :{args.Location.Y}");
 
+            switch (args.Type)
+            {
+                case Sample.Effects.TouchActionType.Entered:
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+                    break;
+                case Sample.Effects.TouchActionType.Pressed:
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 800);
+                    break;
+                case Sample.Effects.TouchActionType.Moved:
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+                    break;
+                case Sample.Effects.TouchActionType.Released:
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+                    break;
+                case Sample.Effects.TouchActionType.Exited:
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+                    break;
+                case Sample.Effects.TouchActionType.Cancelled:
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 1);
+                    break;
+                default:
+                    break;
+            }
             //await label.TranslateTo((label.X - args.Location.X), (label.Y - args.Location.Y), 16);
             //await label.TranslateTo(-(label.X - args.Location.X), -(label.Y - args.Location.Y), 16);
-            await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+            //await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
         }
 
 
