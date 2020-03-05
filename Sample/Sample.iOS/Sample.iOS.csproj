@@ -62,6 +62,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IosEffects\AnimateInOutEffect.cs" />
     <Compile Include="IosEffects\LabelShadowEffect.cs" />
     <Compile Include="IosEffects\TouchEffect.cs" />
     <Compile Include="Main.cs" />

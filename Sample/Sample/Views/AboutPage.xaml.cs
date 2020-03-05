@@ -1,6 +1,7 @@
 ﻿using Sample.Effects;
 using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Sample.Views
@@ -19,6 +20,17 @@ namespace Sample.Views
         {
             InitializeComponent();
             display = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo;
+        }
+        protected override void OnAppearing()
+        {
+            AnimationIn(label);
+            base.OnAppearing();
+        }
+        protected async override void OnDisappearing()
+        {
+            AnimationOut(label);
+            await Task.Delay(500);
+            base.OnDisappearing();
         }
 
         private async void PanUpdated(object sender, PanUpdatedEventArgs e)
@@ -142,6 +154,37 @@ namespace Sample.Views
             {
                 ShadowEffect.SetColor(label, Color.Teal);
                 isLabelTeal = true;
+            }
+        }
+
+
+        public static void AnimationIn(VisualElement view, int index = 0)
+        {
+            try
+            {
+                if (view != null)
+                {
+                    view.Effects.Add(AnimateInOutEffect.AnimateIn(index));
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+
+        public static void AnimationOut(VisualElement view, int index = 0)
+        {
+            try
+            {
+                if (view != null)
+                {
+                    view.Effects.Add(AnimateInOutEffect.AnimateOut(index));
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }
