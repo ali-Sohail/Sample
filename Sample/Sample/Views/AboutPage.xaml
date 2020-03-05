@@ -38,6 +38,7 @@
             <StackLayout.Effects>
                 <tt:TouchEffect Capture="True" TouchAction="TouchEffectAction" />
             </StackLayout.Effects>
+
             <Label
                 x:Name="label"
                 tt:ShadowEffect.DistanceX="5"
@@ -58,7 +59,9 @@
                 </tt:ShadowEffect.Color>
             </Label>
 
+
             <Button
+                x:Name="button"
                 Clicked="OnButtonClicked"
                 Text="Change Shadow Color"
                 VerticalOptions="EndAndExpand" />

@@ -65,6 +65,7 @@
     <Compile Include="IosEffects\AnimateInOutEffect.cs" />
     <Compile Include="IosEffects\LabelShadowEffect.cs" />
     <Compile Include="IosEffects\TouchEffect.cs" />
+    <Compile Include="IosRenderer\IosMap.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -147,7 +148,5 @@
       <Name>Sample</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IosRenderer\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

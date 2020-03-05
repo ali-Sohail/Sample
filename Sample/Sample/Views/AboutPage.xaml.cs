@@ -24,11 +24,13 @@ namespace Sample.Views
         protected override void OnAppearing()
         {
             AnimationIn(label);
+            AnimationIn(button);
             base.OnAppearing();
         }
         protected async override void OnDisappearing()
         {
             AnimationOut(label);
+            AnimationOut(button);
             await Task.Delay(500);
             base.OnDisappearing();
         }
@@ -96,7 +98,7 @@ namespace Sample.Views
             switch (args.Type)
             {
                 case Sample.Effects.TouchActionType.Entered:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 10);
                     break;
 
                 case Sample.Effects.TouchActionType.Pressed:
@@ -108,11 +110,11 @@ namespace Sample.Views
                     break;
 
                 case Sample.Effects.TouchActionType.Released:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 200);
                     break;
 
                 case Sample.Effects.TouchActionType.Exited:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 1);
                     break;
 
                 case Sample.Effects.TouchActionType.Cancelled:

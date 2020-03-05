@@ -11,5 +11,13 @@ namespace Sample
         {
             InitializeComponent();
         }
+        protected override void OnNavigating(ShellNavigatingEventArgs args)
+        {
+            base.OnNavigating(args);
+        }
+        protected override void OnNavigated(ShellNavigatedEventArgs args)
+        {
+            base.OnNavigated(args);
+        }
     }
 }
