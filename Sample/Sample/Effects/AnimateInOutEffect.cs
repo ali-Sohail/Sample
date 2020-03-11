@@ -10,7 +10,7 @@ namespace Sample.Effects
 
         public static Effect AnimateIn(double index = 0, float translate = 100)
         {
-            var effect = (IAnimateInOutEffect)Effect.Resolve("XamarinDocs.AnimateInEffect");
+            IAnimateInOutEffect effect = (IAnimateInOutEffect)Effect.Resolve("XamarinDocs.AnimateInEffect");
             effect.Configure(index, translate);
 
             return (Effect)effect;
@@ -18,7 +18,7 @@ namespace Sample.Effects
 
         public static Effect AnimateOut(double index = 0, float translate = 100)
         {
-            var effect = (IAnimateInOutEffect)Effect.Resolve("XamarinDocs.AnimateOutEffect");
+            IAnimateInOutEffect effect = (IAnimateInOutEffect)Effect.Resolve("XamarinDocs.AnimateOutEffect");
             effect.Configure(index, translate);
 
             return (Effect)effect;

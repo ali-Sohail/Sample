@@ -24,7 +24,7 @@ namespace Sample.Views
         {
             InitializeComponent();
             display = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo;
-           
+
         }
 
         protected override void OnAppearing()
@@ -35,7 +35,7 @@ namespace Sample.Views
             base.OnAppearing();
         }
 
-        protected async override void OnDisappearing()
+        protected override async void OnDisappearing()
         {
             AnimationOut(label);
             AnimationOut(button);
@@ -81,7 +81,9 @@ namespace Sample.Views
             double result = 0;
 
             if (interpole < 0.5)
+            {
                 result = 0.5 * a(interpole * 2.0, tension);
+            }
             else
             {
                 result = 0.5 * (o(interpole * 2.0 - 2.0, tension) + 2.0);

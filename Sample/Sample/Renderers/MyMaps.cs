@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Sample.Renderers
 {
@@ -9,17 +6,13 @@ namespace Sample.Renderers
     {
         public bool IsTrue
         {
-            get { return (bool)GetValue(IsTrueProperty); }
-            set { SetValue(IsTrueProperty, value); }
+            get => (bool)GetValue(IsTrueProperty);
+            set => SetValue(IsTrueProperty, value);
         }
 
         public static readonly BindableProperty IsTrueProperty =
             BindableProperty.Create(propertyName: nameof(IsTrue),
                                     returnType: typeof(bool),
                                     declaringType: typeof(MyMaps));
-
-
-
-
     }
 }

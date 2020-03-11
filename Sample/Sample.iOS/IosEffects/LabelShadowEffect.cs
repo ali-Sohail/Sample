@@ -63,7 +63,7 @@ namespace Sample.iOS.IosEffects
 
         private void UpdateOffset()
         {
-            Control.Layer.ShadowOffset = new CGSize((double)ShadowEffect.GetDistanceX(Element), (double)ShadowEffect.GetDistanceY(Element));
+            Control.Layer.ShadowOffset = new CGSize(ShadowEffect.GetDistanceX(Element), ShadowEffect.GetDistanceY(Element));
         }
     }
 }

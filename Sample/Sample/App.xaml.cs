@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Sample.Services;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Sample.Services;
-using Sample.Views;
 
 namespace Sample
 {

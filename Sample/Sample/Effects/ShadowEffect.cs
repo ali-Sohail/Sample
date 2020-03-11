@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Xamarin.Forms;
 
 namespace Sample.Effects
@@ -65,9 +62,9 @@ namespace Sample.Effects
             View.SetValue(DistanceYProperty, value);
         }
 
-        static void OnHasShadowChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnHasShadowChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var view = bindable as View;
+            View view = bindable as View;
             if (view == null)
             {
                 return;
@@ -80,7 +77,7 @@ namespace Sample.Effects
             }
             else
             {
-                var toRemove = view.Effects.FirstOrDefault(e => e is LabelShadowEffect);
+                Effect toRemove = view.Effects.FirstOrDefault(e => e is LabelShadowEffect);
                 if (toRemove != null)
                 {
                     view.Effects.Remove(toRemove);
@@ -88,7 +85,7 @@ namespace Sample.Effects
             }
         }
 
-        class LabelShadowEffect : RoutingEffect
+        private class LabelShadowEffect : RoutingEffect
         {
             public LabelShadowEffect() : base("XamarinDocs.LabelShadowEffect")
             {

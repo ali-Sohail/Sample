@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using Sample.Models;
 
 namespace Sample.ViewModels

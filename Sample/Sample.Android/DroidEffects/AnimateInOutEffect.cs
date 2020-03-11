@@ -15,7 +15,7 @@ namespace Sample.Droid.DroidEffects
     {
         private double _index;
         private float _translate;
-        private bool _alreadyAnimated;
+        private readonly bool _alreadyAnimated;
         private readonly HashSet<string> _alreadyAnimatedItems = new HashSet<string>();
 
         public void Configure(double index, float translate = 100)
@@ -26,7 +26,7 @@ namespace Sample.Droid.DroidEffects
 
         protected override void OnAttached()
         {
-            var view = Container ?? Control;
+            Android.Views.View view = Container ?? Control;
 
             AnimateIn(view, _index, _translate);
         }
@@ -34,18 +34,25 @@ namespace Sample.Droid.DroidEffects
         private void AnimateIn(Android.Views.View view, double index, float translate = 100, string key = null)
         {
             if (_alreadyAnimated)
+            {
                 return;
+            }
 
             if (key != null)
             {
                 if (_alreadyAnimatedItems.Contains(key))
+                {
                     return;
+                }
 
                 _alreadyAnimatedItems.Add(key);
             }
 
             if (_alreadyAnimated)
+            {
                 return;
+            }
+
             view.Alpha = .01f;
             view.TranslationY = translate;
 
@@ -66,7 +73,7 @@ namespace Sample.Droid.DroidEffects
     {
         private double _index;
         private float _translate;
-        private bool _alreadyAnimated;
+        private readonly bool _alreadyAnimated;
         private readonly HashSet<string> _alreadyAnimatedItems = new HashSet<string>();
 
         public void Configure(double index, float translate = 100)
@@ -77,7 +84,7 @@ namespace Sample.Droid.DroidEffects
 
         protected override void OnAttached()
         {
-            var view = Container ?? Control;
+            Android.Views.View view = Container ?? Control;
 
             AnimateIn(view, _index, _translate);
         }
@@ -85,18 +92,24 @@ namespace Sample.Droid.DroidEffects
         private void AnimateIn(Android.Views.View view, double index, float translate = 100, string key = null)
         {
             if (_alreadyAnimated)
+            {
                 return;
+            }
 
             if (key != null)
             {
                 if (_alreadyAnimatedItems.Contains(key))
+                {
                     return;
+                }
 
                 _alreadyAnimatedItems.Add(key);
             }
 
             if (_alreadyAnimated)
+            {
                 return;
+            }
 
             view.Alpha = 1f;
             view.TranslationY = translate;
@@ -118,7 +131,7 @@ namespace Sample.Droid.DroidEffects
     {
         protected override void OnAttached()
         {
-            var view = Container ?? Control;
+            Android.Views.View view = Container ?? Control;
 
             view.Alpha = 0;
         }

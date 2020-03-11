@@ -18,12 +18,12 @@ namespace Sample.Droid.DroidEffects
         private Sample.Effects.TouchEffect libTouchEffect;
         private bool capture;
         private Func<double, double> fromPixels;
-        private int[] twoIntArray = new int[2];
+        private readonly int[] twoIntArray = new int[2];
 
-        private static Dictionary<Android.Views.View, TouchEffect> viewDictionary =
+        private static readonly Dictionary<Android.Views.View, TouchEffect> viewDictionary =
             new Dictionary<Android.Views.View, TouchEffect>();
 
-        private static Dictionary<int, TouchEffect> idToEffectDictionary =
+        private static readonly Dictionary<int, TouchEffect> idToEffectDictionary =
             new Dictionary<int, TouchEffect>();
 
         protected override void OnAttached()
@@ -85,7 +85,9 @@ namespace Sample.Droid.DroidEffects
                     FireEvent(this, id, TouchActionType.Pressed, screenPointerCoords, true);
 
                     if (idToEffectDictionary.ContainsKey(id))
+                    {
                         break;
+                    }
 
                     idToEffectDictionary.Add(id, this);
 

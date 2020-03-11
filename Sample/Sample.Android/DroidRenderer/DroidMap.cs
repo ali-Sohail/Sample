@@ -19,7 +19,7 @@ namespace Sample.Droid.DroidRenderer
 
         protected override void Dispose(bool disposing)
         {
-            this.NativeMap.MyLocationChange -= LocationChange;
+            NativeMap.MyLocationChange -= LocationChange;
             base.Dispose(disposing);
         }
 
@@ -31,8 +31,8 @@ namespace Sample.Droid.DroidRenderer
         protected override void OnMapReady(GoogleMap map)
         {
             base.OnMapReady(map);
-            this.NativeMap.MyLocationChange += LocationChange;
-            this.NativeMap.CameraIdle += CameraIdle;
+            NativeMap.MyLocationChange += LocationChange;
+            NativeMap.CameraIdle += CameraIdle;
         }
 
         private void CameraIdle(object sender, System.EventArgs e)
@@ -52,7 +52,7 @@ namespace Sample.Droid.DroidRenderer
             }
             CameraPosition cameraPosition = new CameraPosition(target: new LatLng(e.Location.Latitude, e.Location.Longitude), zoom: 20f, tilt: 45f, bearing: e.Location.Bearing);
             CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-            this.NativeMap.AnimateCamera(cameraUpdate);
+            NativeMap.AnimateCamera(cameraUpdate);
         }
     }
 }

@@ -52,15 +52,15 @@ namespace Sample.iOS.IosEffects
 
     internal class TouchRecognizer : UIGestureRecognizer
     {
-        private Element element;        // Forms element for firing events
-        private UIView view;            // iOS UIView
-        private Effects.TouchEffect touchEffect;
+        private readonly Element element;        // Forms element for firing events
+        private readonly UIView view;            // iOS UIView
+        private readonly Effects.TouchEffect touchEffect;
         private bool capture;
 
-        private static Dictionary<UIView, TouchRecognizer> viewDictionary =
+        private static readonly Dictionary<UIView, TouchRecognizer> viewDictionary =
             new Dictionary<UIView, TouchRecognizer>();
 
-        private static Dictionary<long, TouchRecognizer> idToTouchDictionary =
+        private static readonly Dictionary<long, TouchRecognizer> idToTouchDictionary =
             new Dictionary<long, TouchRecognizer>();
 
         public TouchRecognizer(Element element, UIView view, Effects.TouchEffect touchEffect)

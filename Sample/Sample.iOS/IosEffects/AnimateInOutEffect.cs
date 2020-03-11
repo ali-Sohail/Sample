@@ -27,7 +27,7 @@ namespace Sample.iOS.IosEffects
 
         protected override void OnAttached()
         {
-            var view = Container ?? Control;
+            UIView view = Container ?? Control;
 
             AnimateIn(view, _index, _translate);
         }
@@ -35,12 +35,16 @@ namespace Sample.iOS.IosEffects
         private void AnimateIn(UIView view, double index, float translate = 100, string key = null)
         {
             if (_alreadyAnimated)
+            {
                 return;
+            }
 
             if (key != null)
             {
                 if (_alreadyAnimatedItems.Contains(key))
+                {
                     return;
+                }
 
                 _alreadyAnimatedItems.Add(key);
             }
@@ -64,7 +68,9 @@ namespace Sample.iOS.IosEffects
                     _alreadyAnimated = true;
 
                     if (key != null)
+                    {
                         _alreadyAnimatedItems.Remove(key);
+                    }
                 });
         }
 
@@ -88,7 +94,7 @@ namespace Sample.iOS.IosEffects
 
         protected override void OnAttached()
         {
-            var view = Container ?? Control;
+            UIView view = Container ?? Control;
 
             AnimateIn(view, _index, _translate);
         }
@@ -96,12 +102,16 @@ namespace Sample.iOS.IosEffects
         private void AnimateIn(UIView view, double index, float translate = 100, string key = null)
         {
             if (_alreadyAnimated)
+            {
                 return;
+            }
 
             if (key != null)
             {
                 if (_alreadyAnimatedItems.Contains(key))
+                {
                     return;
+                }
 
                 _alreadyAnimatedItems.Add(key);
             }
@@ -125,7 +135,9 @@ namespace Sample.iOS.IosEffects
                     _alreadyAnimated = true;
 
                     if (key != null)
+                    {
                         _alreadyAnimatedItems.Remove(key);
+                    }
                 });
         }
 
@@ -138,7 +150,7 @@ namespace Sample.iOS.IosEffects
     {
         protected override void OnAttached()
         {
-            var view = Container ?? Control;
+            UIView view = Container ?? Control;
 
             view.Alpha = 0;
         }

@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Sample.Models;
+using Sample.ViewModels;
 using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using Sample.Models;
-using Sample.ViewModels;
 
 namespace Sample.Views
 {
@@ -13,7 +10,7 @@ namespace Sample.Views
     [DesignTimeVisible(false)]
     public partial class ItemDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        private readonly ItemDetailViewModel viewModel;
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
@@ -26,7 +23,7 @@ namespace Sample.Views
         {
             InitializeComponent();
 
-            var item = new Item
+            Item item = new Item
             {
                 Text = "Item 1",
                 Description = "This is an item description."
