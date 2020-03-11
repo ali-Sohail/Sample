@@ -13,20 +13,28 @@ namespace Sample.Views
     {
         private readonly Xamarin.Essentials.DisplayInfo display;
         private double x, y;
-        bool isLabelTeal = false;
+        private bool isLabelTeal = false;
         private bool check = false;
+        private double move = 0;
+        private double stackHeight = 0;
+        private bool IsNavBarVisible = true;
+
 
         public AboutPage()
         {
             InitializeComponent();
             display = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo;
+           
         }
+
         protected override void OnAppearing()
         {
             AnimationIn(label);
             AnimationIn(button);
+            stackHeight = -(navStack.Height + navStack.Margin.VerticalThickness);
             base.OnAppearing();
         }
+
         protected async override void OnDisappearing()
         {
             AnimationOut(label);
@@ -95,35 +103,43 @@ namespace Sample.Views
         {
             System.Diagnostics.Debug.WriteLine($"Location X :{args.Location.X}\t Location Y :{args.Location.Y}");
 
-            switch (args.Type)
-            {
-                case Sample.Effects.TouchActionType.Entered:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 10);
-                    break;
+            await HideShowNavBar(args);
 
-                case Sample.Effects.TouchActionType.Pressed:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 800);
-                    break;
+            //switch (args.Type)
+            //{
+            //    case Sample.Effects.TouchActionType.Entered:
+            //        System.Diagnostics.Debug.WriteLine("Entered");
+            //        await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 10);
+            //        break;
 
-                case Sample.Effects.TouchActionType.Moved:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
-                    break;
+            //    case Sample.Effects.TouchActionType.Pressed:
+            //        System.Diagnostics.Debug.WriteLine("Pressed");
+            //        await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 800);
+            //        break;
 
-                case Sample.Effects.TouchActionType.Released:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 200);
-                    break;
+            //    case Sample.Effects.TouchActionType.Moved:
+            //        System.Diagnostics.Debug.WriteLine("Moved");
+            //        await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
+            //        break;
 
-                case Sample.Effects.TouchActionType.Exited:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 1);
-                    break;
+            //    case Sample.Effects.TouchActionType.Released:
+            //        System.Diagnostics.Debug.WriteLine("Released");
+            //        await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 200);
+            //        break;
 
-                case Sample.Effects.TouchActionType.Cancelled:
-                    await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 1);
-                    break;
+            //    case Sample.Effects.TouchActionType.Exited:
+            //        System.Diagnostics.Debug.WriteLine("Exited");
+            //        await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 1);
+            //        break;
 
-                default:
-                    break;
-            }
+            //    case Sample.Effects.TouchActionType.Cancelled:
+            //        System.Diagnostics.Debug.WriteLine("Cancelled");
+            //        await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 1);
+            //        break;
+
+            //    default:
+            //        break;
+            //}
             //await label.TranslateTo((label.X - args.Location.X), (label.Y - args.Location.Y), 16);
             //await label.TranslateTo(-(label.X - args.Location.X), -(label.Y - args.Location.Y), 16);
             //await label.TranslateTo(-(label.X + label.Width / 2 - args.Location.X), -(label.Y + label.Height / 2 - args.Location.Y), 16);
@@ -159,6 +175,51 @@ namespace Sample.Views
             }
         }
 
+        private async Task HideShowNavBar(Effects.TouchActionEventArgs args)
+        {
+            stackHeight = -(navStack.Height + navStack.Margin.VerticalThickness);
+            switch (args.Type)
+            {
+                case Sample.Effects.TouchActionType.Entered:
+                    break;
+
+                case Sample.Effects.TouchActionType.Pressed:
+                    move = args.Location.Y;
+                    System.Diagnostics.Debug.WriteLine($"Pressed : { args.Location.Y}\t Stack Y : {navStack.TranslationY}");
+                    break;
+
+                case Sample.Effects.TouchActionType.Moved:
+
+                    System.Diagnostics.Debug.WriteLine($"Moved :{Math.Min(Math.Max(stackHeight, args.Location.Y) - move, 0)}");
+                    System.Diagnostics.Debug.WriteLine($"Moved Args : { args.Location.Y}\t Stack Y : {navStack.TranslationY}");
+                    await navStack.TranslateTo((navStack.X - navStack.Margin.HorizontalThickness / 2), Math.Min(args.Location.Y - move, 0), 16);
+                    break;
+
+                case Sample.Effects.TouchActionType.Released:
+                    System.Diagnostics.Debug.WriteLine($"Released : { args.Location.Y}\t Stack Y : {navStack.TranslationY}");
+
+                    if (Math.Min(args.Location.Y - move, 0) < 0)
+                    {
+                        await navStack.TranslateTo((navStack.X - navStack.Margin.HorizontalThickness / 2), stackHeight, 200);
+                        IsNavBarVisible = false;
+                    }
+                    else
+                    {
+                        await navStack.TranslateTo((navStack.X - navStack.Margin.HorizontalThickness / 2), 0, 200);
+                        IsNavBarVisible = true;
+                    }
+                    break;
+
+                case Sample.Effects.TouchActionType.Exited:
+                    break;
+
+                case Sample.Effects.TouchActionType.Cancelled:
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
         public static void AnimationIn(VisualElement view, int index = 0)
         {

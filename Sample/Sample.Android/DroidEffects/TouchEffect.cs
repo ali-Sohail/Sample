@@ -84,6 +84,9 @@ namespace Sample.Droid.DroidEffects
                 case MotionEventActions.PointerDown:
                     FireEvent(this, id, TouchActionType.Pressed, screenPointerCoords, true);
 
+                    if (idToEffectDictionary.ContainsKey(id))
+                        break;
+
                     idToEffectDictionary.Add(id, this);
 
                     capture = libTouchEffect.Capture;

@@ -8,7 +8,7 @@
     xmlns:tt="clr-namespace:Sample.Effects"
     xmlns:vm="clr-namespace:Sample.ViewModels"
     Title="{Binding Title}"
-    Shell.NavBarIsVisible="True"
+    Shell.NavBarIsVisible="False"
     mc:Ignorable="d">
 
     <ContentPage.BindingContext>
@@ -23,7 +23,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Shell.TitleView>
+    <!--<Shell.TitleView>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Label
                 HorizontalOptions="CenterAndExpand"
@@ -31,43 +31,69 @@
                 TextColor="White"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>
-    </Shell.TitleView>
+    </Shell.TitleView>-->
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="AliceBlue">
-            <StackLayout.Effects>
+        <Grid
+            BackgroundColor="AliceBlue"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.Effects>
                 <tt:TouchEffect Capture="True" TouchAction="TouchEffectAction" />
-            </StackLayout.Effects>
-
-            <Label
-                x:Name="label"
-                tt:ShadowEffect.DistanceX="5"
-                tt:ShadowEffect.DistanceY="5"
-                tt:ShadowEffect.HasShadow="true"
-                tt:ShadowEffect.Radius="5"
-                FontSize="Large"
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding Title}"
-                VerticalOptions="CenterAndExpand">
-
-                <tt:ShadowEffect.Color>
-                    <OnPlatform x:TypeArguments="Color">
-                        <On Platform="iOS" Value="Black" />
-                        <On Platform="Android" Value="White" />
-                        <On Platform="UWP" Value="Red" />
-                    </OnPlatform>
-                </tt:ShadowEffect.Color>
-            </Label>
+            </Grid.Effects>
 
 
-            <Button
-                x:Name="button"
-                Clicked="OnButtonClicked"
-                Text="Change Shadow Color"
-                VerticalOptions="EndAndExpand" />
-        </StackLayout>
+            <StackLayout BackgroundColor="AliceBlue" VerticalOptions="FillAndExpand">
 
 
+                <Label
+                    x:Name="label"
+                    tt:ShadowEffect.DistanceX="5"
+                    tt:ShadowEffect.DistanceY="5"
+                    tt:ShadowEffect.HasShadow="true"
+                    tt:ShadowEffect.Radius="10"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Title}"
+                    VerticalOptions="CenterAndExpand">
+
+                    <tt:ShadowEffect.Color>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="iOS" Value="Black" />
+                            <On Platform="Android" Value="White" />
+                            <On Platform="UWP" Value="Red" />
+                        </OnPlatform>
+                    </tt:ShadowEffect.Color>
+                </Label>
+
+
+                <Button
+                    x:Name="button"
+                    Clicked="OnButtonClicked"
+                    Text="Change Shadow Color"
+                    VerticalOptions="EndAndExpand" />
+
+
+            </StackLayout>
+            <Frame
+                x:Name="navStack"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10"
+                Padding="10"
+                BackgroundColor="Black"
+                CornerRadius="20"
+                VerticalOptions="Start">
+                <Label
+                    FontSize="Large"
+                    HeightRequest="50"
+                    HorizontalOptions="Center"
+                    Text="{Binding Title}"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>

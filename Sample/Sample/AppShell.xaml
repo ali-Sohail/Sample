@@ -32,9 +32,9 @@
 
     <!--  Your Pages  -->
     <TabBar>
-        <Tab Title="Maps" Icon="tab_about.png">
+        <!--<Tab Title="Maps" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate local:MapsPage}" />
-        </Tab>
+        </Tab>-->
         <Tab Title="About" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
