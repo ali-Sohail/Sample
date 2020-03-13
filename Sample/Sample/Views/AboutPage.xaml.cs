@@ -1,5 +1,7 @@
 ﻿using Sample.Effects;
+using Sample.Helpers;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -19,12 +21,10 @@ namespace Sample.Views
         private double stackHeight = 0;
         private bool IsNavBarVisible = true;
 
-
         public AboutPage()
         {
             InitializeComponent();
             display = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo;
-
         }
 
         protected override void OnAppearing()
@@ -149,32 +149,50 @@ namespace Sample.Views
 
         private void OnButtonClicked(object sender, EventArgs args)
         {
-            if (isLabelTeal)
+            try
             {
-                Color color = Color.Default;
-                switch (Device.RuntimePlatform)
+                if (isLabelTeal)
                 {
-                    case Device.iOS:
-                        color = Color.Black;
-                        break;
+                    Color color = Color.Default;
+                    switch (Device.RuntimePlatform)
+                    {
+                        case Device.iOS:
+                            color = Color.Black;
+                            break;
 
-                    case Device.Android:
-                        color = Color.White;
-                        break;
+                        case Device.Android:
+                            color = Color.White;
+                            break;
 
-                    case Device.UWP:
-                        color = Color.Red;
-                        break;
+                        case Device.UWP:
+                            color = Color.Red;
+                            break;
+                    }
+
+                    ShadowEffect.SetColor(label, color);
+                    isLabelTeal = false;
                 }
-
-                ShadowEffect.SetColor(label, color);
-                isLabelTeal = false;
+                else
+                {
+                    ShadowEffect.SetColor(label, Color.Teal);
+                    isLabelTeal = true;
+                }
+                CreateException();
             }
-            else
+            catch (Exception ex)
             {
-                ShadowEffect.SetColor(label, Color.Teal);
-                isLabelTeal = true;
+                ExceptionLogger.Exceptions(ex);
             }
+        }
+
+        private void CreateException()
+        {
+            List<string> list = new List<string>
+                {
+                    "23"
+                };
+
+            string s = list[1];
         }
 
         private async Task HideShowNavBar(Effects.TouchActionEventArgs args)

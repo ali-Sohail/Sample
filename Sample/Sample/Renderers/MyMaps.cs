@@ -14,5 +14,9 @@ namespace Sample.Renderers
             BindableProperty.Create(propertyName: nameof(IsTrue),
                                     returnType: typeof(bool),
                                     declaringType: typeof(MyMaps));
+
+        public MyMaps()
+        {
+        }
     }
 }
