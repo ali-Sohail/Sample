@@ -177,22 +177,12 @@ namespace Sample.Views
                     ShadowEffect.SetColor(label, Color.Teal);
                     isLabelTeal = true;
                 }
-                CreateException();
+                
             }
             catch (Exception ex)
             {
-                ExceptionLogger.Exceptions(ex);
+                ExceptionLogger.LogException(ex);
             }
-        }
-
-        private void CreateException()
-        {
-            List<string> list = new List<string>
-                {
-                    "23"
-                };
-
-            string s = list[1];
         }
 
         private async Task HideShowNavBar(Effects.TouchActionEventArgs args)

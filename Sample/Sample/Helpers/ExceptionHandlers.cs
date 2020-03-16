@@ -27,14 +27,14 @@ namespace Sample.Helpers
 
     public static class ExceptionLogger
     {
-        public static void Exceptions(Exception exception,
+        public static void LogException(Exception exception,
            [CallerFilePath] string filePath = "",
            [CallerLineNumber] int lineNumber = 0,
            [CallerMemberName] string callerMemberName = "")   
         {
             var fileName = System.IO.Path.GetFileName(filePath);
             Debug.WriteLine($"\nException Occur : {exception.GetType()} \nError: {exception.Message} \nLine Number: {lineNumber} \nCaller Name: {callerMemberName} \nFile Name: {fileName}\n");
-            Microsoft.AppCenter.Crashes.Crashes.TrackError(exception, new System.Collections.Generic.Dictionary<string, string> { { "FilePath : ", fileName }, { "Method Name : ", System.Reflection.MethodBase.GetCurrentMethod().Name } });
+            //Microsoft.AppCenter.Crashes.Crashes.TrackError(exception, new System.Collections.Generic.Dictionary<string, string> { { "FilePath : ", fileName }, { "Method Name : ", System.Reflection.MethodBase.GetCurrentMethod().Name } });
         }
 
     }
